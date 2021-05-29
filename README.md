@@ -18,12 +18,73 @@ Um pacote de campos textos personalizados, capazes de receber entradas no format
  - [ ] Campo numérico com ponto flutuante
 
  ## Exemplo
-``flutter
-FutterTextField.cpfCnpj(
-    autovalidateMode: AutovalidateMode.onUserInteraction,
-    labelText: 'CPF / CNPJ',
-    hintText: 'Digite seu CPF ou CNPJ',
-    controller: controllerCpfCnpj,
-),
-``
+```dart
+
+class Exemplo extends StatelessWidget {
+  final controllerCpfCnpj = FutterTextEditingController();
+  final controllerCpf = FutterTextEditingController();
+  final controllerMoeda = FutterTextEditingController();
+  final controllerTelefone = FutterTextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter Text Field'),
+      ),
+      body: SingleChildScrollView(
+        child: Form(
+          child: Column(
+            children: [
+              FutterTextField.cpfCnpj(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                labelText: 'CPF',
+                hintText: 'Digite seu CPF',
+                controller: controllerCpf,
+                onlyCpf: true,
+              ),
+              FutterTextField.cpfCnpj(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                labelText: 'CPF / CNPJ',
+                hintText: 'Digite seu CPF ou CNPJ',
+                controller: controllerCpfCnpj,
+              ),
+              FutterTextField.email(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                labelText: 'Email',
+                hintText: 'Digite seu email',
+              ),
+              FutterTextField.moeda(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                labelText: 'Preço',
+                hintText: 'Digite o preço',
+                controller: controllerMoeda,
+              ),
+              FutterTextField.telefone(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                labelText: 'Telefone',
+                hintText: 'Digite seu telefone',
+                controller: controllerTelefone,
+              ),
+              FutterTextField.numero(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                labelText: 'Quantidade',
+                hintText: 'Digite a quantidade',
+                min: 5,
+                max: 50,
+              ),
+              FutterTextField.senha(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                labelText: 'Senha',
+                hintText: 'Digite sua senha',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
 
