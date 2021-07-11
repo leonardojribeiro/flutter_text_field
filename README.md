@@ -2,6 +2,10 @@
 
 Um pacote de campos textos personalizados, capazes de receber entradas no formato de CPF, CNPJ, email, Senha, Telefone, R$ e Números inteiros.
 
+## Status
+
+🚧 Em Construção 🚧
+
 ## Demonstração
 
 ![demonstração](preview.gif) 
