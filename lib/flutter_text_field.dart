@@ -362,7 +362,7 @@ class FlutterTextFieldCore {
         return 'Esse campo é obrigatório.';
       }
     }
-    if (texto != null && minLength != null) {
+    if (texto != null && minLength != null && texto.isNotEmpty) {
       if (texto.length < minLength) {
         return 'Deve ter pelo menos $minLength caracteres.';
       }
