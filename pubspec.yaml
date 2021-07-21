@@ -1,6 +1,6 @@
 name: flutter_text_field
 description: Um pacote de campos textos personalizados, capazes de receber entradas no formato de CPF, CNPJ, email, Senha, Telefone, R$ e Números inteiros.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/LeonardoJRibeiro/flutter_text_field
 
 environment:
