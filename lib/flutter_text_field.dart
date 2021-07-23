@@ -73,9 +73,6 @@ class FlutterTextField extends StatefulWidget {
         inputFormatters = [
           FilteringTextInputFormatter.digitsOnly,
           TextInputFormatter.withFunction((oldValue, newValue) {
-            if (newValue.selection.baseOffset == 0) {
-              return newValue;
-            }
             if (newValue.selection.baseOffset > 14) {
               return oldValue;
             }
@@ -112,9 +109,6 @@ class FlutterTextField extends StatefulWidget {
         inputFormatters = [
           FilteringTextInputFormatter.digitsOnly,
           TextInputFormatter.withFunction((oldValue, newValue) {
-            if (newValue.selection.baseOffset == 0) {
-              return newValue;
-            }
             if (newValue.selection.baseOffset > 14) {
               return oldValue;
             }
@@ -179,9 +173,6 @@ class FlutterTextField extends StatefulWidget {
         inputFormatters = [
           FilteringTextInputFormatter.digitsOnly,
           TextInputFormatter.withFunction((oldValue, newValue) {
-            if (newValue.selection.baseOffset == 0) {
-              return newValue;
-            }
             final value = double.parse(newValue.text) / 100;
             if (onValueChanged != null) {
               onValueChanged(value);
