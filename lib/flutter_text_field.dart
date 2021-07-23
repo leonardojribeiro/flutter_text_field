@@ -118,8 +118,8 @@ class FlutterTextField extends StatefulWidget {
             if (newValue.selection.baseOffset > 14) {
               return oldValue;
             }
-            controller.unmaskedText = newValue.text.replaceAll(RegExp('[^0-9]'), '');
             final newText = FlutterTextFieldCore.numberMask(newValue.text, (tamanho) => tamanho > 10 ? '(00) 00000-0000' : '(00) 0000-0000');
+            controller.unmaskedText = newText.replaceAll(RegExp('[^0-9]'), '');
             return newValue.copyWith(text: newText, selection: TextSelection.collapsed(offset: newText.length));
           })
         ] {
