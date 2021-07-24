@@ -334,10 +334,10 @@ class FlutterTextFieldCore {
   static String? validarEmail({String? texto, String? Function(String?)? validator, bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
-        return 'Esse campo é obrigatório.';
+        return 'Campo é obrigatório.';
       }
     }
-    if (texto != null) {
+    if (texto != null && texto.isNotEmpty == true) {
       if (!EmailValidator.validate(texto)) {
         return '$texto tem o formato de email inválido.';
       }
@@ -351,7 +351,7 @@ class FlutterTextFieldCore {
   static String? validarSenha({String? texto, int? minLength, String? Function(String?)? validator, bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
-        return 'Esse campo é obrigatório.';
+        return 'Campo obrigatório.';
       }
     }
     if (texto != null && minLength != null && texto.isNotEmpty) {
@@ -368,7 +368,7 @@ class FlutterTextFieldCore {
   static String? validarNumero({String? texto, int? min, int? max, String? Function(String?)? validator, bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
-        return 'Esse campo é obrigatório.';
+        return 'Campo obrigatório.';
       }
     }
     if (texto != null && texto != '') {
@@ -410,7 +410,7 @@ class FlutterTextFieldCore {
   static String? validarMoeda({String? texto, int? min, int? max, String? Function(String?)? validator, bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
-        return 'Esse campo é obrigatório.';
+        return 'Campo obrigatório.';
       }
     }
     if (texto != null && texto != '') {
@@ -452,7 +452,7 @@ class FlutterTextFieldCore {
   static String? validarTelefone({String? texto, String? Function(String?)? validator, bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
-        return 'Esse campo é obrigatório.';
+        return 'Campo obrigatório.';
       }
     }
     if (texto != null && texto.isNotEmpty) {
@@ -475,7 +475,7 @@ class FlutterTextFieldCore {
   static String? validarCpfCnpj({String? texto, required bool onlyCpf, String? Function(String?)? validator, bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
-        return 'Esse campo é obrigatório.';
+        return 'Campo obrigatório.';
       }
     }
     if (texto != null && texto.isNotEmpty) {
