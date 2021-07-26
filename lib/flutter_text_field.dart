@@ -334,7 +334,7 @@ class FlutterTextFieldCore {
   static String? validarEmail({String? texto, String? Function(String?)? validator, bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
-        return 'Campo é obrigatório.';
+        return 'Campo obrigatório.';
       }
     }
     if (texto != null && texto.isNotEmpty == true) {
