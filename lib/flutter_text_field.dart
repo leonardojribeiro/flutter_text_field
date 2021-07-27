@@ -325,7 +325,7 @@ class FlutterTextFieldCore {
         }
         return null;
       } else {
-        return 'Código com formato inválido.';
+        return 'Formato de código inválido.';
       }
     }
     return 'Campo obrigatório.';
@@ -339,7 +339,7 @@ class FlutterTextFieldCore {
     }
     if (texto != null && texto.isNotEmpty == true) {
       if (!EmailValidator.validate(texto)) {
-        return '$texto tem o formato de email inválido.';
+        return 'Formato de email inválido.';
       }
     }
     if (validator != null) {
