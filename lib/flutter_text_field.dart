@@ -65,9 +65,17 @@ class FlutterTextField extends StatefulWidget {
     String? Function(String?)? validator,
     String? initialText,
     this.onFieldSubmitted,
-  })  : validator = ((texto) => FlutterTextFieldCore.validarCpfCnpj(texto: texto, onlyCpf: onlyCpf, validator: validator, required: required)),
+  })  : validator = ((texto) => FlutterTextFieldCore.validarCpfCnpj(
+            texto: texto,
+            onlyCpf: onlyCpf,
+            validator: validator,
+            required: required)),
         password = false,
-        initialText = FlutterTextFieldCore.numberMask(initialText, (tamanho) => tamanho > 11 && !onlyCpf ? '00.000.000/0000-00' : '000.000.000-00'),
+        initialText = FlutterTextFieldCore.numberMask(
+            initialText,
+            (tamanho) => tamanho > 11 && !onlyCpf
+                ? '00.000.000/0000-00'
+                : '000.000.000-00'),
         keyboardType = TextInputType.number,
         maxLength = null,
         inputFormatters = [
@@ -77,12 +85,19 @@ class FlutterTextField extends StatefulWidget {
               return oldValue;
             }
             // controller.unmaskedText = newValue.text.replaceAll(RegExp('[^0-9]   '), '');
-            final newText = FlutterTextFieldCore.numberMask(newValue.text, (tamanho) => tamanho > 11 && !onlyCpf ? '00.000.000/0000-00' : '000.000.000-00');
+            final newText = FlutterTextFieldCore.numberMask(
+                newValue.text,
+                (tamanho) => tamanho > 11 && !onlyCpf
+                    ? '00.000.000/0000-00'
+                    : '000.000.000-00');
             controller.unmaskedText = newText.replaceAll(RegExp('[^0-9]'), '');
-            return newValue.copyWith(text: newText, selection: TextSelection.collapsed(offset: newText.length));
+            return newValue.copyWith(
+                text: newText,
+                selection: TextSelection.collapsed(offset: newText.length));
           })
         ] {
-    (controller as FlutterTextEditingController?)?.unmaskedText = initialText != null ? initialText.replaceAll(RegExp('[^0-9]'), '') : '';
+    (controller as FlutterTextEditingController?)?.unmaskedText =
+        initialText != null ? initialText.replaceAll(RegExp('[^0-9]'), '') : '';
   }
 
   FlutterTextField.telefone({
@@ -101,23 +116,31 @@ class FlutterTextField extends StatefulWidget {
     FormFieldValidator<String>? validator,
     String? initialText,
     this.onFieldSubmitted,
-  })  : validator = ((texto) => FlutterTextFieldCore.validarTelefone(texto: texto, validator: validator, required: required)),
+  })  : validator = ((texto) => FlutterTextFieldCore.validarTelefone(
+            texto: texto, validator: validator, required: required)),
         password = false,
         keyboardType = TextInputType.number,
         maxLength = null,
-        initialText = FlutterTextFieldCore.numberMask(initialText, (tamanho) => tamanho > 10 ? '(00) 00000-0000' : '(00) 0000-0000'),
+        initialText = FlutterTextFieldCore.numberMask(initialText,
+            (tamanho) => tamanho > 10 ? '(00) 00000-0000' : '(00) 0000-0000'),
         inputFormatters = [
           FilteringTextInputFormatter.digitsOnly,
           TextInputFormatter.withFunction((oldValue, newValue) {
             if (newValue.selection.baseOffset > 14) {
               return oldValue;
             }
-            final newText = FlutterTextFieldCore.numberMask(newValue.text, (tamanho) => tamanho > 10 ? '(00) 00000-0000' : '(00) 0000-0000');
+            final newText = FlutterTextFieldCore.numberMask(
+                newValue.text,
+                (tamanho) =>
+                    tamanho > 10 ? '(00) 00000-0000' : '(00) 0000-0000');
             controller.unmaskedText = newText.replaceAll(RegExp('[^0-9]'), '');
-            return newValue.copyWith(text: newText, selection: TextSelection.collapsed(offset: newText.length));
+            return newValue.copyWith(
+                text: newText,
+                selection: TextSelection.collapsed(offset: newText.length));
           })
         ] {
-    (controller as FlutterTextEditingController?)?.unmaskedText = initialText != null ? initialText.replaceAll(RegExp('[^0-9]'), '') : '';
+    (controller as FlutterTextEditingController?)?.unmaskedText =
+        initialText != null ? initialText.replaceAll(RegExp('[^0-9]'), '') : '';
   }
 
   FlutterTextField.numero({
@@ -138,7 +161,12 @@ class FlutterTextField extends StatefulWidget {
     FormFieldValidator<String>? validator,
     this.onFieldSubmitted,
     this.initialText,
-  })  : validator = ((texto) => FlutterTextFieldCore.validarNumero(texto: texto, min: min, max: max, validator: validator, required: required)),
+  })  : validator = ((texto) => FlutterTextFieldCore.validarNumero(
+            texto: texto,
+            min: min,
+            max: max,
+            validator: validator,
+            required: required)),
         password = false,
         keyboardType = TextInputType.number,
         maxLength = null,
@@ -165,9 +193,16 @@ class FlutterTextField extends StatefulWidget {
     Function(double)? onValueChanged,
     FormFieldValidator<String>? validator,
     this.onFieldSubmitted,
-  })  : validator = ((texto) => FlutterTextFieldCore.validarMoeda(texto: texto, min: min, max: max, validator: validator, required: required)),
+  })  : validator = ((texto) => FlutterTextFieldCore.validarMoeda(
+            texto: texto,
+            min: min,
+            max: max,
+            validator: validator,
+            required: required)),
         password = false,
-        initialText = initialText != null ? NumberFormat('#,##0.00', 'pt_BR').format(initialText) : '',
+        initialText = initialText != null
+            ? NumberFormat('#,##0.00', 'pt_BR').format(initialText)
+            : '',
         keyboardType = TextInputType.number,
         maxLength = null,
         inputFormatters = [
@@ -180,9 +215,14 @@ class FlutterTextField extends StatefulWidget {
             controller.unmaskedText = value.toString();
             final formatter = NumberFormat('#,##0.00', 'pt_BR');
             final newText = 'R\$ ${formatter.format(value)}';
-            return newValue.copyWith(text: newText, selection: TextSelection.collapsed(offset: newText.length));
+            return newValue.copyWith(
+                text: newText,
+                selection: TextSelection.collapsed(offset: newText.length));
           })
-        ];
+        ] {
+    (controller as FlutterTextEditingController).unmaskedText =
+        initialText.toString();
+  }
 
   FlutterTextField.senha({
     this.autoFocus = false,
@@ -228,7 +268,8 @@ class FlutterTextField extends StatefulWidget {
     FormFieldValidator<String>? validator,
     this.onFieldSubmitted,
     this.initialText,
-  })  : validator = ((texto) => FlutterTextFieldCore.validarEmail(texto: texto, validator: validator, required: required)),
+  })  : validator = ((texto) => FlutterTextFieldCore.validarEmail(
+            texto: texto, validator: validator, required: required)),
         password = false,
         keyboardType = TextInputType.emailAddress,
         maxLength = null,
@@ -301,7 +342,8 @@ class _FlutterTextFieldState extends State<FlutterTextField> {
                   ? InkWell(
                       onTap: () => visivelNotifier.value = !visivel,
                       borderRadius: BorderRadius.circular(50),
-                      child: Icon(visivel ? Icons.visibility_off : Icons.visibility),
+                      child: Icon(
+                          visivel ? Icons.visibility_off : Icons.visibility),
                     )
                   : null,
               labelText: widget.labelText,
@@ -331,7 +373,8 @@ class FlutterTextFieldCore {
     return 'Campo obrigatório.';
   }
 
-  static String? validarEmail({String? texto, String? Function(String?)? validator, bool? required}) {
+  static String? validarEmail(
+      {String? texto, String? Function(String?)? validator, bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
         return 'Campo obrigatório.';
@@ -348,7 +391,11 @@ class FlutterTextFieldCore {
     return null;
   }
 
-  static String? validarSenha({String? texto, int? minLength, String? Function(String?)? validator, bool? required}) {
+  static String? validarSenha(
+      {String? texto,
+      int? minLength,
+      String? Function(String?)? validator,
+      bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
         return 'Campo obrigatório.';
@@ -365,7 +412,12 @@ class FlutterTextFieldCore {
     return null;
   }
 
-  static String? validarNumero({String? texto, int? min, int? max, String? Function(String?)? validator, bool? required}) {
+  static String? validarNumero(
+      {String? texto,
+      int? min,
+      int? max,
+      String? Function(String?)? validator,
+      bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
         return 'Campo obrigatório.';
@@ -407,7 +459,12 @@ class FlutterTextFieldCore {
     return null;
   }
 
-  static String? validarMoeda({String? texto, int? min, int? max, String? Function(String?)? validator, bool? required}) {
+  static String? validarMoeda(
+      {String? texto,
+      int? min,
+      int? max,
+      String? Function(String?)? validator,
+      bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
         return 'Campo obrigatório.';
@@ -449,7 +506,8 @@ class FlutterTextFieldCore {
     return null;
   }
 
-  static String? validarTelefone({String? texto, String? Function(String?)? validator, bool? required}) {
+  static String? validarTelefone(
+      {String? texto, String? Function(String?)? validator, bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
         return 'Campo obrigatório.';
@@ -472,7 +530,11 @@ class FlutterTextFieldCore {
     return null;
   }
 
-  static String? validarCpfCnpj({String? texto, required bool onlyCpf, String? Function(String?)? validator, bool? required}) {
+  static String? validarCpfCnpj(
+      {String? texto,
+      required bool onlyCpf,
+      String? Function(String?)? validator,
+      bool? required}) {
     if (required == true) {
       if (texto == null || texto.isEmpty) {
         return 'Campo obrigatório.';
@@ -501,7 +563,9 @@ class FlutterTextFieldCore {
         }
         return null;
       }
-      return onlyCpf == true ? 'Deve ter exatamente 11 dígitos' : 'Deve ter exatamente 11 ou 14 dígitos';
+      return onlyCpf == true
+          ? 'Deve ter exatamente 11 dígitos'
+          : 'Deve ter exatamente 11 ou 14 dígitos';
     }
     if (validator != null) {
       return validator(texto);
@@ -533,7 +597,8 @@ class FlutterTextFieldCore {
     }
     resto = 11 - (soma % 11);
     dv2 = (resto == 10 || resto == 11) ? 0 : resto;
-    return dv1 == int.parse(cpf.substring(9, 10)) && dv2 == int.parse(cpf.substring(10, 11));
+    return dv1 == int.parse(cpf.substring(9, 10)) &&
+        dv2 == int.parse(cpf.substring(10, 11));
   }
 
   static bool validarCnpj(String? cnpj) {
@@ -565,7 +630,8 @@ class FlutterTextFieldCore {
     }
     resto = soma % 11;
     dv2 = (resto < 2) ? 0 : 11 - resto;
-    return dv1 == int.parse(cnpj.substring(12, 13)) && dv2 == int.parse(cnpj.substring(13, 14));
+    return dv1 == int.parse(cnpj.substring(12, 13)) &&
+        dv2 == int.parse(cnpj.substring(13, 14));
   }
 
   static String numberMask(String? texto, String Function(int tamanho) mask) {
@@ -700,9 +766,11 @@ class _CustomDateFieldState extends State<CustomDateField> {
 
   void _updateValueForSelectedDate() {
     if (_selectedDate != null) {
-      final MaterialLocalizations localizations = MaterialLocalizations.of(context);
+      final MaterialLocalizations localizations =
+          MaterialLocalizations.of(context);
       _inputText = localizations.formatCompactDate(_selectedDate!);
-      TextEditingValue textEditingValue = widget.controller.value.copyWith(text: _inputText);
+      TextEditingValue textEditingValue =
+          widget.controller.value.copyWith(text: _inputText);
       // Select the new text if we are auto focused and haven't selected the text before.
       if (widget.autofocus && !_autoSelected) {
         textEditingValue = textEditingValue.copyWith(
@@ -721,23 +789,28 @@ class _CustomDateFieldState extends State<CustomDateField> {
       }
     } else {
       _inputText = '';
-      widget.controller.value = widget.controller.value.copyWith(text: _inputText);
+      widget.controller.value =
+          widget.controller.value.copyWith(text: _inputText);
     }
   }
 
   DateTime? _parseDate(String? text) {
-    final MaterialLocalizations localizations = MaterialLocalizations.of(context);
+    final MaterialLocalizations localizations =
+        MaterialLocalizations.of(context);
     return localizations.parseCompactDate(text);
   }
 
   bool _isValidAcceptableDate(DateTime? date) {
-    return date != null && !date.isBefore(widget.firstDate) && !date.isAfter(widget.lastDate);
+    return date != null &&
+        !date.isBefore(widget.firstDate) &&
+        !date.isAfter(widget.lastDate);
   }
 
   String? _validateDate(String? text) {
     final DateTime? date = _parseDate(text);
     if (date == null) {
-      return widget.errorFormatText ?? MaterialLocalizations.of(context).invalidDateFormatLabel;
+      return widget.errorFormatText ??
+          MaterialLocalizations.of(context).invalidDateFormatLabel;
     } else if (!_isValidAcceptableDate(date)) {
       return MaterialLocalizations.of(context).dateOutOfRangeLabel;
     }
@@ -762,8 +835,10 @@ class _CustomDateFieldState extends State<CustomDateField> {
 
   @override
   Widget build(BuildContext context) {
-    final MaterialLocalizations localizations = MaterialLocalizations.of(context);
-    final InputDecorationTheme inputTheme = Theme.of(context).inputDecorationTheme;
+    final MaterialLocalizations localizations =
+        MaterialLocalizations.of(context);
+    final InputDecorationTheme inputTheme =
+        Theme.of(context).inputDecorationTheme;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
@@ -806,8 +881,11 @@ class _CustomDateFieldState extends State<CustomDateField> {
                 widget.onChanged!(_selectedDate);
               }
             }
-            final newText = _numberMask(newValue.text, (tamanho) => '00/00/0000');
-            return newValue.copyWith(text: newText, selection: TextSelection.collapsed(offset: newText.length));
+            final newText =
+                _numberMask(newValue.text, (tamanho) => '00/00/0000');
+            return newValue.copyWith(
+                text: newText,
+                selection: TextSelection.collapsed(offset: newText.length));
           }),
         ],
         validator: _validateDate,
