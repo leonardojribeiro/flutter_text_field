@@ -10,6 +10,14 @@ Um pacote de campos textos personalizados, capazes de receber entradas no format
 
 ![demonstração](preview.gif) 
 
+## Uso 
+Adicione as seguintes linhas no seu pubspec.yaml e faça um pub get.
+```yaml
+  flutter_text_field:
+    git: 
+      url: https://github.com/LeonardoJRibeiro/flutter_text_field
+```
+
 ## Principais recursos
 
  - [X] Campo de CPF ou CNPJ com validação aritmética e máscara.
@@ -18,7 +26,6 @@ Um pacote de campos textos personalizados, capazes de receber entradas no format
  - [X] Campo de senha com possibilidade de visualização.
  - [X] Campo de email com validação por meio da biblioteca [email_validator](https://pub.dev/packages/email_validator).
  - [X] Campo numérico com validação de mínimo e máximo inteiro.
- - [ ] Campo de data e hora.
  - [ ] Campo numérico com ponto flutuante
 
  ## Exemplo
